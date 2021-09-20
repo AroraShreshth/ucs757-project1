@@ -10,11 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 
+import os
+from dotenv import load_dotenv
+# Heroku Stuff
+import django_heroku
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -37,7 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # External Applications
+    'crispy_forms',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +64,7 @@ ROOT_URLCONF = 'proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,9 +84,13 @@ WSGI_APPLICATION = 'proj.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE", default="django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", default=os.path.join(BASE_DIR, "db.sqlite3")),
+        "USER": os.environ.get("SQL_USER", default="test"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", default="test"),
+        "HOST": os.environ.get("SQL_HOST", default="db"),
+        "PORT": os.environ.get("SQL_PORT", default="5432"),
     }
 }
 
@@ -118,3 +132,33 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'staticfiles'),
+)
+
+# Login Stuff
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = 'dashboard-home'
+# LOGOUT_REDIRECT_URL = 'home'
+
+# Django Toolbar
+MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware', ]
+INSTALLED_APPS += ['debug_toolbar', ]
+DEBUG_TOOLBAR_CONFIG = {
+    'DISABLE_PANELS': ['debug_toolbar.panels.redirects.RedirectsPanel', ],
+    'SHOW_TEMPLATE_CONTEXT': True,
+}
+
+INTERNAL_IPS = ['127.0.0.1', 'localhost']
+
+# Django Extensions
+INSTALLED_APPS += ['django_extensions', ]
+
+# Captcha System
+INSTALLED_APPS += ['captcha', ]
+RECAPTCHA_PUBLIC_KEY = '6LczbcwZAAAAAM0xlmQzIErz9fE5-z6V1tCD_Gx2'
+RECAPTCHA_PRIVATE_KEY = '6LczbcwZAAAAAJvY4Hr6moDw6n05neq0jyXE0KQ3'

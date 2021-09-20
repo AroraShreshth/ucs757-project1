@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+website_name = "UCS757 Project 1"
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,9 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Users Config
+    'users.apps.UsersConfig',
     
     # External Applications
     'crispy_forms',
+    'bulma',
+    'imagekit',
 ]
 
 
@@ -141,9 +146,9 @@ STATICFILES_DIRS = (
 )
 
 # Login Stuff
-# LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = 'dashboard-home'
-# LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboard-home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Django Toolbar
 MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware', ]
@@ -162,3 +167,20 @@ INSTALLED_APPS += ['django_extensions', ]
 INSTALLED_APPS += ['captcha', ]
 RECAPTCHA_PUBLIC_KEY = '6LczbcwZAAAAAM0xlmQzIErz9fE5-z6V1tCD_Gx2'
 RECAPTCHA_PRIVATE_KEY = '6LczbcwZAAAAAJvY4Hr6moDw6n05neq0jyXE0KQ3'
+
+
+# Github workflow File
+if os.environ.get('GITHUB_WORKFLOW'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'test_database',
+            'USER': 'test_user',
+            'PASSWORD': 'test_password',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+
+# if not bool(os.environ.get('LOCAL_DEVELOPMENT_SYSTEM')):
+#     django_heroku.settings(locals())  # Heroku Sucks Big Time

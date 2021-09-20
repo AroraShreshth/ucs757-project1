@@ -13,11 +13,10 @@
 
 The Aim of the project is to provide a holistic website for easy access to ML models via a clean Interface a and options for users
  
- Project 1: Image Description System
-
+Project 1: Emotion Detection System.
 
 ### Some Salient Features of Project 🔭
-    --  TBD --
+    This project aims to classify the emotion on a person's face into one of seven categories, using deep convolutional neural networks. The model is trained on the FER-2013 dataset which was published on International Conference on Machine Learning (ICML). This dataset consists of 35887 grayscale, 48x48 sized face images with seven emotions - angry, disgusted, fearful, happy, neutral, sad and surprised.
 
 
 ## Getting Started ⚙️
@@ -76,12 +75,24 @@ The page will reload if you make edits.<br />
 
 We use [SemVer](http://semver.org/) for versioning. 
 
-## Authors ✍🏻
+# Using Model Files
 
-* **Shreshth Arora** - *Idea , Backend and Deployment* - [AroraShreshth](https://github.com/AroraShreshth)
+- [Download the FER-2013 dataset from here and unzip it inside the src folder.](https://drive.google.com/file/d/1R0PT0bzZEt4mr_EniLRJYmM4vxI_No2p/view?usp=sharing)
+This will create the folder data.
 
-## License 📜
-    --  TBD --
+- If you want to train this model, use:
 
-## Acknowledgments 💯
-    --  TBD --
+```
+cd model
+python emotions.py --mode train
+```
+
+- If you want to view the predictions without training again, you can download the pre-trained model from here and then run:
+
+```
+cd model
+python display.py
+```
+- This implementation by default detects emotions on all faces in the webcam feed. With a simple 4-layer CNN, the test accuracy reached 63.2% in 50 epochs.
+
+![Accuracy plot](model/accuracy.png)

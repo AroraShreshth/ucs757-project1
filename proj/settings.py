@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-website_name = "UCS757 Project 1"
+website_name = "ML Library"
 # Application definition
 
 INSTALLED_APPS = [

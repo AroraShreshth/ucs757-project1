@@ -4,14 +4,16 @@
 <h2>Shreshth Arora Project</h2>
 
 
-# UCS757 Project 1
+# ML Library Project
 
 ![PythonCI](https://github.com/AroraShreshth/ucs757-project1/workflows/PythonCI/badge.svg)
 </div>
 
 ## About  💫
 
-The Aim of the project is to provide a holistic website for everthing related to hosting hackathons and bringing users
+The Aim of the project is to provide a holistic website for easy access to ML models via a clean Interface a and options for users
+ 
+ Project 1: Image Description System
 
 
 ### Some Salient Features of Project 🔭

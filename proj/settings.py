@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # Users Config
     'users.apps.UsersConfig',
+    'mlmod.apps.MlmodConfig',
     
     # External Applications
     'crispy_forms',

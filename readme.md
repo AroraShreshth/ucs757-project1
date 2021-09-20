@@ -70,6 +70,10 @@ The page will reload if you make edits.<br />
 ## Built With ⚒
 ### Backend & Website 📡
 * [Django 3.0](https://www.djangoproject.com) - The web framework used in the project.
+* [Tensorflow](https://www.tensorflow.com) - Framework used to train and test the models and responses
+* [Postgres](https://www.postgresql.org/) - Backend DB used to store final responses from the Tensorflow Emotion Detection Model
+
+  
   
 ## Versioning 🗓
 

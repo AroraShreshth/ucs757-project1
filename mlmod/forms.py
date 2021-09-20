@@ -1,4 +1,11 @@
 from django import forms
+from .models import ModelCall
 
-class ImageFomr(forms.Form):
-    name = forms.CharField()
+class MLCallImageForm(forms.ModelForm):
+    class Meta:
+        model = ModelCall
+        fields = ['image']
+
+        labels = {
+            'image': 'image'
+        }

@@ -54,4 +54,3 @@ def mlcall(image):
     except Exception as e:
         print(e)
     
-# print(mlcall('/media/default.jpg'))

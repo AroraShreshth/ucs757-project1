@@ -27,20 +27,20 @@ def homepage(request):
     return render(request, 'unlogged/index.html', {'title': '', 'website_name': website_name})
 
 
-class DashBoard(LoginRequiredMixin, TemplateView):
-    template_name = 'dashboard/home.html'
+# class DashBoard(LoginRequiredMixin, TemplateView):
+#     template_name = 'dashboard/home.html'
 
-    # def get(self, request, *args, **kwargs):
-    #     context = self.get_context_data(**kwargs)
-    #     if not request.user.profile.setup:
-    #         return redirect('dashboard-welcome')
-    #     return self.render_to_response(context)
+#     # def get(self, request, *args, **kwargs):
+#     #     context = self.get_context_data(**kwargs)
+#     #     if not request.user.profile.setup:
+#     #         return redirect('dashboard-welcome')
+#     #     return self.render_to_response(context)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['website_name'] = website_name
-        context['title'] = 'Dashboard'
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['website_name'] = website_name
+#         context['title'] = 'Dashboard'
+#         return context
 
 def register(request):
 

@@ -1,6 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% load crispy_forms_tags %}
 {% load bulma_tags %}
+{% load static %}
 {% block content %}
  
  <section class="section">
@@ -10,6 +11,11 @@
       </h1>
       <p class="subtitle">
        Here are some <strong> ML Emotion Model calls  </strong> you made for yourself {{ user.username }} , browse the results and let us know.
+      </p>
+
+          <p class="subtitle">
+      As the Heroku Storage is ephermal please delete the runs that you have done as it might cause db issues later ob for your user case or make a different user if the problem persists.
+
       </p>
     </div>
 
@@ -35,6 +41,11 @@
     <br>
     </div>
 {% endfor %}
+{% if not count %}
+       <figure class="image is-1028x1028">
+        <img src="{% static 'images/empty.png' %}" alt="Image">
+      </figure>
+{% endif %}
 
   
   </section>
